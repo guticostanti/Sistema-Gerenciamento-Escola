@@ -12,17 +12,19 @@ use Illuminate\Validation\ValidationException;
 class OtherBrowserSessionsController extends Controller
 {
     /**
-     * Log out from other browser sessions.
+     * Logout from other browser sessions.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Contracts\Auth\StatefulGuard  $guard
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Inertia\Response
      */
     public function destroy(Request $request, StatefulGuard $guard)
     {
-        $request->validate([
-            'password' => 'required|string|password',
-        ]);
+        if (! Hash::check($request->password, $request->user()->password)) {
+            throw ValidationException::withMessages([
+                'password' => [__('This password does not match our records.')],
+            ])->errorBag('logoutOtherBrowserSessions');
+        }
 
         $guard->logoutOtherDevices($request->password);
 
@@ -43,7 +45,7 @@ class OtherBrowserSessionsController extends Controller
             return;
         }
 
-        DB::connection(config('session.connection'))->table(config('session.table', 'sessions'))
+        DB::table(config('session.table', 'sessions'))
             ->where('user_id', $request->user()->getAuthIdentifier())
             ->where('id', '!=', $request->session()->getId())
             ->delete();

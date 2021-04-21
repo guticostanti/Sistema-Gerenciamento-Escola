@@ -109,7 +109,7 @@ class ApiTokenManager extends Component
     /**
      * Display the token value to the user.
      *
-     * @param  \Laravel\Sanctum\NewAccessToken  $token
+     * @param  \Laravel\Sanctum\NewAccessToken
      * @return void
      */
     protected function displayTokenValue($token)
@@ -117,8 +117,6 @@ class ApiTokenManager extends Component
         $this->displayingToken = true;
 
         $this->plainTextToken = explode('|', $token->plainTextToken, 2)[1];
-
-        $this->dispatchBrowserEvent('showing-token-modal');
     }
 
     /**

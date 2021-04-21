@@ -476,12 +476,12 @@
     ),
     'laravel/jetstream' => 
     array (
-      'pretty_version' => 'v2.3.3',
-      'version' => '2.3.3.0',
+      'pretty_version' => 'v1.6.6',
+      'version' => '1.6.6.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'fea3aa721de859b156c7b570b0a39d16e087d055',
+      'reference' => '9de2b4555b34a857465b14d1ada66c9b672f4251',
     ),
     'laravel/laravel' => 
     array (
@@ -491,15 +491,6 @@
       array (
       ),
       'reference' => 'd8dd3a7f13e9ed4d13ac747d620298362f2c64bb',
-    ),
-    'laravel/sail' => 
-    array (
-      'pretty_version' => 'v1.5.0',
-      'version' => '1.5.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '7f2d520f8c7d6fc0e5e4949c1363f6ddff0ff116',
     ),
     'laravel/sanctum' => 
     array (
@@ -582,6 +573,15 @@
       ),
       'reference' => '1cb1cde8e8dd0f70cc0fe51354a59acad9302084',
     ),
+    'mpdf/mpdf' => 
+    array (
+      'pretty_version' => 'v8.0.10',
+      'version' => '8.0.10.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '1333a962cd2f7ae1a127b7534b7734b58179186f',
+    ),
     'mtdowling/cron-expression' => 
     array (
       'replaced' => 
@@ -620,6 +620,15 @@
       ),
       'reference' => 'c6d052fc58cb876152f89f532b95a8d7907e7f0e',
     ),
+    'niklasravnsborg/laravel-pdf' => 
+    array (
+      'pretty_version' => 'v4.0.0',
+      'version' => '4.0.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '80cce12a3d9048759ec0d2ca87c57a56b4b4950f',
+    ),
     'nunomaduro/collision' => 
     array (
       'pretty_version' => 'v5.4.0',
@@ -646,6 +655,15 @@
       array (
       ),
       'reference' => 'f34c2b11eb9d2c9318e13540a1dbc2a3afbd939c',
+    ),
+    'paragonie/random_compat' => 
+    array (
+      'pretty_version' => 'v9.99.100',
+      'version' => '9.99.100.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '996434e5492cb4c3edcb9168db6fbb1359ef965a',
     ),
     'phar-io/manifest' => 
     array (
@@ -850,8 +868,8 @@
     array (
       'provided' => 
       array (
-        0 => '1.0.0',
-        1 => '1.0',
+        0 => '1.0',
+        1 => '1.0.0',
       ),
     ),
     'psr/simple-cache' => 
@@ -1049,6 +1067,15 @@
       array (
       ),
       'reference' => 'c6c1022351a901512170118436c764e473f6de8c',
+    ),
+    'setasign/fpdi' => 
+    array (
+      'pretty_version' => 'v2.3.6',
+      'version' => '2.3.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '6231e315f73e4f62d72b73f3d6d78ff0eed93c31',
     ),
     'swiftmailer/swiftmailer' => 
     array (

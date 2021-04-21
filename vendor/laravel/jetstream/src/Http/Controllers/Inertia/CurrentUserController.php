@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Inertia\Inertia;
 use Laravel\Jetstream\Contracts\DeletesUsers;
 
 class CurrentUserController extends Controller
@@ -17,21 +16,20 @@ class CurrentUserController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Contracts\Auth\StatefulGuard  $auth
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request, StatefulGuard $auth)
     {
-        $request->validate([
-            'password' => 'required|string|password',
-        ]);
+        if (! Hash::check($request->password, $request->user()->password)) {
+            throw ValidationException::withMessages([
+                'password' => [__('This password does not match our records.')],
+            ])->errorBag('deleteUser');
+        }
 
         app(DeletesUsers::class)->delete($request->user()->fresh());
 
         $auth->logout();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Inertia::location(url('/'));
+        return response('', 409)->header('X-Inertia-Location', url('/'));
     }
 }

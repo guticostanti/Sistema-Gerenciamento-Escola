@@ -58,7 +58,7 @@ class UpdateProfileInformationForm extends Component
 
         $this->emit('saved');
 
-        $this->emit('refresh-navigation-menu');
+        $this->emit('refresh-navigation-dropdown');
     }
 
     /**
@@ -70,7 +70,7 @@ class UpdateProfileInformationForm extends Component
     {
         Auth::user()->deleteProfilePhoto();
 
-        $this->emit('refresh-navigation-menu');
+        $this->emit('refresh-navigation-dropdown');
     }
 
     /**

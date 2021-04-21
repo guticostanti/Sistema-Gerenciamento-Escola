@@ -18,11 +18,7 @@ class ApiTokenController extends Controller
     public function index(Request $request)
     {
         return Jetstream::inertia()->render($request, 'API/Index', [
-            'tokens' => $request->user()->tokens->map(function ($token) {
-                return $token->toArray() + [
-                    'last_used_ago' => optional($token->last_used_at)->diffForHumans(),
-                ];
-            }),
+            'tokens' => $request->user()->tokens,
             'availablePermissions' => Jetstream::$permissions,
             'defaultPermissions' => Jetstream::$defaultPermissions,
         ]);
@@ -36,13 +32,14 @@ class ApiTokenController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        Validator::make([
+            'name' => $request->name,
+        ], [
             'name' => ['required', 'string', 'max:255'],
-        ]);
+        ])->validateWithBag('createApiToken');
 
         $token = $request->user()->createToken(
-            $request->name,
-            Jetstream::validPermissions($request->input('permissions', []))
+            $request->name, Jetstream::validPermissions($request->input('permissions', []))
         );
 
         return back()->with('flash', [
@@ -59,11 +56,6 @@ class ApiTokenController extends Controller
      */
     public function update(Request $request, $tokenId)
     {
-        $request->validate([
-            'permissions' => 'array',
-            'permissions.*' => 'string',
-        ]);
-
         $token = $request->user()->tokens()->where('id', $tokenId)->firstOrFail();
 
         $token->forceFill([

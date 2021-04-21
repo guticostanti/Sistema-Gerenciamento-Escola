@@ -20,8 +20,6 @@ trait HasTeams
 
     /**
      * Get the current team of the user's context.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function currentTeam()
     {
@@ -35,7 +33,6 @@ trait HasTeams
     /**
      * Switch the user's context to the given team.
      *
-     * @param  mixed  $team
      * @return bool
      */
     public function switchTeam($team)
@@ -56,7 +53,7 @@ trait HasTeams
     /**
      * Get all of the teams the user owns or belongs to.
      *
-     * @return \Illuminate\Support\Collection
+     * @return \Illuminate\Collections\Collection
      */
     public function allTeams()
     {
@@ -65,8 +62,6 @@ trait HasTeams
 
     /**
      * Get all of the teams the user owns.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function ownedTeams()
     {
@@ -75,8 +70,6 @@ trait HasTeams
 
     /**
      * Get all of the teams the user belongs to.
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function teams()
     {
@@ -89,7 +82,7 @@ trait HasTeams
     /**
      * Get the user's "personal" team.
      *
-     * @return \App\Models\Team
+     * @return \App\Team
      */
     public function personalTeam()
     {
@@ -104,7 +97,7 @@ trait HasTeams
      */
     public function ownsTeam($team)
     {
-        return $this->id == $team->{$this->getForeignKey()};
+        return $this->id == $team->user_id;
     }
 
     /**
